@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Haiduk.ai - AI-Powered Platform</title>
+    <meta content="Transform the way you work with AI-powered solutions" name="description"/>
+    <meta content="Haiduk.ai - AI-Powered Platform" property="og:title"/>
+    <meta content="Transform the way you work with AI-powered solutions" property="og:description"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0b;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Scroll reveal animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease;
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Pulse animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Gradient animation */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-animated {
+            background: linear-gradient(-45deg, #6345f5, #8b5cf6, #6366f1, #a855f7);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 11, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        
+        .logo {
+            height: 32px;
+            width: auto;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #ffffff;
+        }
+        
+        .nav-right {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        
+        .button-primary {
+            background: linear-gradient(135deg, #6345f5 0%, #8b5cf6 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .button-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .button-primary:hover::before {
+            left: 100%;
+        }
+        
+        .button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 69, 245, 0.4);
+        }
+        
+        .button-secondary {
+            background: transparent;
+            color: #a1a1aa;
+            padding: 12px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .button-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .button-secondary:hover::before {
+            width: 100%;
+        }
+        
+        .button-secondary:hover {
+            color: white;
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            padding: 120px 0 80px;
+            background: radial-gradient(ellipse at top, rgba(99, 69, 245, 0.3) 0%, transparent 50%);
+            text-align: center;
+        }
+        
+        .eyebrow {
+            background: linear-gradient(135deg, #6345f5 0%, #8b5cf6 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+        
+        .hero-title {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-text {
+            font-size: 20px;
+            color: #a1a1aa;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero-visual {
+            position: relative;
+            margin-top: 60px;
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, rgba(99, 69, 245, 0.1) 0%, transparent 100%);
+        }
+        
+        /* Logos Section */
+        .logos-section {
+            padding: 60px 0;
+            background: radial-gradient(ellipse at bottom, rgba(99, 69, 245, 0.1) 0%, transparent 50%);
+        }
+        
+        .logos-title {
+            text-align: center;
+            color: #a1a1aa;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+        
+        .logos-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            opacity: 0.6;
+        }
+        
+        .logo-item {
+            height: 32px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        
+        .logo-item:hover {
+            filter: grayscale(0%);
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        
+        .section-text {
+            font-size: 18px;
+            color: #a1a1aa;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        
+        .features-content h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .features-content p {
+            font-size: 16px;
+            color: #a1a1aa;
+            line-height: 1.6;
+        }
+        
+        .feature-visual {
+            background: linear-gradient(180deg, rgba(99, 69, 245, 0.1) 0%, transparent 100%);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-image {
+            width: 100%;
+            border-radius: 12px;
+        }
+        
+        /* Solutions Section */
+        .solutions-section {
+            padding: 100px 0;
+            background: radial-gradient(ellipse at center, rgba(99, 69, 245, 0.1) 0%, transparent 70%);
+        }
+        
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+        
+        .solution-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 69, 245, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .solution-card:hover::before {
+            opacity: 1;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(99, 69, 245, 0.3);
+            box-shadow: 0 20px 40px rgba(99, 69, 245, 0.2);
+        }
+        
+        .solution-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .solution-card p {
+            color: #a1a1aa;
+            line-height: 1.6;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+        
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 69, 245, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .team-member:hover::before {
+            opacity: 1;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 69, 245, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .member-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #6345f5 0%, #8b5cf6 100%);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .member-image::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #6345f5, #8b5cf6, #6366f1, #a855f7);
+            background-size: 300% 300%;
+            animation: gradient 3s ease infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .team-member:hover .member-image {
+            transform: scale(1.1);
+        }
+        
+        .team-member:hover .member-image::before {
+            opacity: 1;
+        }
+        
+        .member-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .member-role {
+            color: #a1a1aa;
+            font-size: 14px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 0;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+        
+        .faq-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        
+        .faq-header {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .faq-content {
+            padding: 0 24px 24px;
+            color: #a1a1aa;
+        }
+        
+        /* Waitlist Section */
+        .waitlist-section {
+            padding: 100px 0;
+            background: radial-gradient(ellipse at center, rgba(99, 69, 245, 0.2) 0%, transparent 70%);
+            text-align: center;
+        }
+        
+        .waitlist-form {
+            max-width: 400px;
+            margin: 40px auto 0;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        .form-input::placeholder {
+            color: #a1a1aa;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 60px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-about p {
+            color: #a1a1aa;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .footer-section a {
+            display: block;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a1a1aa;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .features-grid,
+            .solutions-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="container">
+            <div class="nav-wrap">
+                <a href="/" class="logo-link">
+                    <img src="logo-white.svg" alt="Haiduk.ai" class="logo"/>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#solutions" class="nav-link">Solutions</a></li>
+                    <li><a href="#team" class="nav-link">Team</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="#" class="nav-link">Docs</a></li>
+                </ul>
+                <div class="nav-right">
+                    <a href="#waitlist" class="button-primary">Join waitlist</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="eyebrow fade-in">More than a platform</div>
+            <h1 class="hero-title fade-in">Transform the way you work</h1>
+            <p class="hero-text fade-in">Empower your team with AI-powered solutions designed to streamline workflows, boost collaboration, and drive productivity.</p>
+            <div class="button-group fade-in">
+                <a href="#waitlist" class="button-primary pulse">Join waitlist</a>
+                <a href="#" class="button-secondary">See docs</a>
+            </div>
+            <div class="hero-visual fade-in float">
+                <div style="width: 100%; height: 400px; background: linear-gradient(180deg, rgba(99, 69, 245, 0.2) 0%, transparent 100%); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; color: #a1a1aa;">
+                    Platform Preview
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logos Section -->
+    <section class="logos-section">
+        <div class="container">
+            <div class="logos-title fade-in">Used by great teams</div>
+            <div class="logos-wrap fade-in">
+                <div style="width: 120px; height: 32px; background: rgba(255, 255, 255, 0.1); border-radius: 8px;" class="scale-in"></div>
+                <div style="width: 120px; height: 32px; background: rgba(255, 255, 255, 0.1); border-radius: 8px;" class="scale-in"></div>
+                <div style="width: 120px; height: 32px; background: rgba(255, 255, 255, 0.1); border-radius: 8px;" class="scale-in"></div>
+                <div style="width: 120px; height: 32px; background: rgba(255, 255, 255, 0.1); border-radius: 8px;" class="scale-in"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="eyebrow">Features</div>
+                <h2 class="section-title">It's packed with all you need</h2>
+                <p class="section-text">Discover our AI-powered features designed to make your workflow simpler, smarter, and more effective.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="features-content slide-left">
+                    <h3>AI-Powered Automation</h3>
+                    <p>Let AI handle repetitive tasks while you focus on what matters most. Our intelligent automation adapts to your workflow and continuously improves.</p>
+                </div>
+                <div class="feature-visual slide-right">
+                    <div style="width: 100%; height: 200px; background: rgba(99, 69, 245, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #a1a1aa;">
+                        AI Automation Interface
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-visual slide-left">
+                    <div style="width: 100%; height: 200px; background: rgba(99, 69, 245, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #a1a1aa;">
+                        Smart Analytics Dashboard
+                    </div>
+                </div>
+                <div class="features-content slide-right">
+                    <h3>Smart Analytics</h3>
+                    <p>Get actionable insights with AI-driven analytics that help you make informed decisions and optimize your processes.</p>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="features-content slide-left">
+                    <h3>Intelligent Collaboration</h3>
+                    <p>Work together seamlessly with AI-enhanced collaboration tools that understand context and facilitate better teamwork.</p>
+                </div>
+                <div class="feature-visual slide-right">
+                    <div style="width: 100%; height: 200px; background: rgba(99, 69, 245, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #a1a1aa;">
+                        Collaboration Tools
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="solutions-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="eyebrow">Solutions</div>
+                <h2 class="section-title">There is something for every team</h2>
+                <p class="section-text">Discover how Haiduk.ai meets your team's unique needs with AI-powered solutions.</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card scale-in">
+                    <h3>Operations</h3>
+                    <p>Streamline processes with AI automation, improve efficiency, and ensure seamless collaboration across your operational teams.</p>
+                </div>
+                <div class="solution-card scale-in">
+                    <h3>Marketing</h3>
+                    <p>Boost campaign effectiveness with AI insights, track performance intelligently, and collaborate effortlessly on marketing initiatives.</p>
+                </div>
+                <div class="solution-card scale-in">
+                    <h3>Development</h3>
+                    <p>Enhance productivity with AI-assisted coding, automate development workflows, and integrate seamlessly with existing tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="eyebrow">Team</div>
+                <h2 class="section-title">Meet our team</h2>
+                <p class="section-text">Behind every AI innovation is a passionate team committed to delivering the best solutions for your needs.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member scale-in">
+                    <div class="member-image"></div>
+                    <h3 class="member-name">Alex Haiduk</h3>
+                    <p class="member-role">Co-Founder & CEO</p>
+                </div>
+                <div class="team-member scale-in">
+                    <div class="member-image"></div>
+                    <h3 class="member-name">Sarah Chen</h3>
+                    <p class="member-role">Co-Founder & CTO</p>
+                </div>
+                <div class="team-member scale-in">
+                    <div class="member-image"></div>
+                    <h3 class="member-name">Marcus Rodriguez</h3>
+                    <p class="member-role">Lead AI Engineer</p>
+                </div>
+                <div class="team-member scale-in">
+                    <div class="member-image"></div>
+                    <h3 class="member-name">Emily Watson</h3>
+                    <p class="member-role">Head of Product</p>
+                </div>
+                <div class="team-member scale-in">
+                    <div class="member-image"></div>
+                    <h3 class="member-name">David Kim</h3>
+                    <p class="member-role">Lead Designer</p>
+                </div>
+                <div class="team-member scale-in">
+                    <div class="member-image"></div>
+                    <h3 class="member-name">Lisa Thompson</h3>
+                    <p class="member-role">Customer Success Lead</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="eyebrow">FAQ</div>
+                <h2 class="section-title">Questions you might have</h2>
+                <p class="section-text">Explore our FAQs to learn more about how Haiduk.ai works and how it can help your team.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item fade-in">
+                    <div class="faq-header">
+                        <h3 class="faq-title">What is Haiduk.ai, and how does it work?</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>Haiduk.ai is an AI-powered platform designed to help businesses streamline workflows, automate processes, and gain valuable insights through intelligent automation.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-header">
+                        <h3 class="faq-title">Is my data secure with Haiduk.ai?</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>Yes, your data is fully secure. We use industry-leading encryption and security measures to ensure that your information remains protected at all times.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-header">
+                        <h3 class="faq-title">Can I integrate Haiduk.ai with other tools?</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>Absolutely! Haiduk.ai seamlessly integrates with a wide range of tools, allowing you to connect your existing software and streamline your AI-powered workflow.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-header">
+                        <h3 class="faq-title">Do you offer a free trial or demo?</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>Yes, we offer a free trial and demo so you can explore all the AI-powered features before committing. Get started today and see how it works for you.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-header">
+                        <h3 class="faq-title">What kind of support does Haiduk.ai provide?</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>We provide comprehensive support, including live chat, email assistance, and an extensive knowledge base. Our team is here to help you every step of the way.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section id="waitlist" class="waitlist-section">
+        <div class="container">
+            <div class="eyebrow fade-in">Waitlist</div>
+            <h2 class="hero-title fade-in">Join waitlist<br/><span style="color: #a1a1aa;">Be the first to know</span></h2>
+            <form class="waitlist-form scale-in">
+                <input type="email" class="form-input" placeholder="Enter your email" required/>
+                <button type="submit" class="button-primary gradient-animated" style="width: 100%;">Join waitlist</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="logo-white.svg" alt="Haiduk.ai" class="logo"/>
+                    <p>A leading AI platform committed to simplifying workflows, enhancing collaboration, and driving growth for businesses of all sizes.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#solutions">Solutions</a>
+                        <a href="#team">Team</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="#">Docs</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <a href="#">About</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Blog</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Legal</h4>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Security</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Haiduk.ai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add staggered animation delay for grid items
+            const gridItems = document.querySelectorAll('.solution-card, .team-member, .faq-item');
+            gridItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            // Parallax effect for hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const heroVisual = document.querySelector('.hero-visual');
+                if (heroVisual) {
+                    heroVisual.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+
+            
+        });
+
+        // Enhanced button interactions
+        document.querySelectorAll('.button-primary, .button-secondary').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+            
+            button.addEventListener('mousedown', function() {
+                this.style.transform = 'translateY(0) scale(0.98)';
+            });
+            
+            button.addEventListener('mouseup', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+        });
+
+        // Interactive FAQ items
+        document.querySelectorAll('.faq-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('span');
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.style.opacity = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.opacity = '1';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+
+        // Add mouse follow effect for cards
+        document.querySelectorAll('.solution-card, .team-member').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                this.style.transform = `translateY(-12px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+
+        // Form submission with animation
+        document.querySelector('.waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Joining...';
+            button.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                button.textContent = '✓ Joined!';
+                button.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                button.style.transform = 'scale(1)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(135deg, #6345f5 0%, #8b5cf6 100%)';
+                }, 2000);
+            }, 1000);
+        });
+
+        // Add random floating animation to logos
+        document.querySelectorAll('.logos-wrap > div').forEach((logo, index) => {
+            logo.style.animation = `float ${6 + index}s ease-in-out infinite`;
+            logo.style.animationDelay = `${index * 0.5}s`;
+        });
+          </script>
+  </body>
+  </html> 
